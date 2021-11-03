@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="./img/favicon-candle.ico"/>
+    <script src="https://kit.fontawesome.com/754ab2f32e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/slick.css"/>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <title>Aromatica store</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <a href="#"><img src="./img/icons/aromatica-logo.svg" alt="aromatica-candles-shop-ca"></a>
+        </div>
+        <div class="header__nav">
+            <ul class="header__menu">
+                <li class="header__item"><a class="header__link" href="#about-us">About us</a></li>
+                <li class="header__item"><a class="header__link" href="#products">Products</a></li>
+                <li class="header__item"><a class="header__link" href="#why-us">Why us</a></li>
+                <li class="header__item"><a class="header__link" href="#blog">Blog</a></li>
+                <li class="header__item"><a class="header__link" href="#contacts">Contacts</a></li>
+            </ul>
+        </div>
+        <div class="header__burger">
+            <span></span>
+        </div>
+        <button class="header__cart">
+            <i class="fas fa-cart-plus"></i>
+        </button>
+    </header>
+    <main class="main">
+        <section class="welcome__slider slider">
+            <div class="welcome__slider_1">
+                <div class="welcome__slider__content">
+                    <h3 class="welcome__slider__subtitle subtitle">Welcome to Aromatica</h3>
+                    <h2 class="welcome__slider__title title">Let our candles create the atmosphere</h2>
+                    <p class="welcome__slider__text">
+                    Our store offers a wide variety of scented candles from the world’s top candle manufacturers.
+                    </p>
+                    <button class="shop__button">Shop now</button>
+                </div>
+                <div class="welcome__slider__picture">
+                    <img src="./img/section_images/header-background.png" alt="aromatica-store">
+                </div>  
+            </div>
+            <div class="welcome__slider_2">
+                <div class="welcome__slider__content">
+                <h3 class="welcome__slider__subtitle subtitle">Candles you'll love</h3>
+                <h2 class="welcome__slider__title title">Best Fragrances for Your Enjoyment</h2>
+                <p class="welcome__slider__text">
+                At our store, you can find candles with the best scents to help you relax and unwind.
+                </p>
+                <button class="shop__button">Shop now</button>
+                </div>
+                <div class="welcome__slider__picture">
+                    <img src="./img/section_images/header-background-2.png" alt="candles-store-canada">
+                </div>  
+            </div>
+        </section>
+        <section class="about__us wow fadeInUpBig" id="about-us" data-wow-duration="1s">
+            <div class="about__us__picture">
+                <img class="about__us__img" src="./img/section_images/who-we-are.png" alt="">
+            </div>
+            <div class="about__us__info">
+                <h3 class="about__us__subtitle subtitle">A Few Words About Us</h3>
+                <h2 class="about__us__title title">Who We Are</h2>
+                <p class="abous__us__text text">
+                Aromatica is the leading supplier of scented candles in the USA. We aim to keep the cost of our products friendly, without compromising on our quality at all times.  
+                </p>
+                <div class="about__us__more">
+                    <button class="about__us__button"><i class="fas fa-arrow-right"></i></button>
+                    <div class="about__us__founder__info">
+                    <p class="about__us__founder">Sam Williams</p>
+                    <p class="about__us__founder__title">Company Founder</p>
+                    </div>
+                    <img src="./img/icons/founder-signature.svg" alt=""> 
+                </div>
+                <div class="about__us__more__text hidden">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum debitis facere repudiandae, architecto animi laudantium vitae praesentium. Exercitationem, quibusdam qui.
+                </div>
+            </div>
+        </section>
+        <section class="our__features wow bounceInRight" data-wow-duration="2s">
+            <div class="our__features__block">
+                    <span class="our__features__number">01</span>
+                    <img src="./img/icons/for-atmosphere.svg" alt="">
+                <h3 class="our__features__subtitle">For Atmosphere</h3>
+                <p class="our__features__text">Our candles create a unique atmosphere both at home and work and add softness to your interior.</p>
+            </div>
+            <div class="our__features__block">
+                    <span class="our__features__number">02</span>
+                    <img src="./img/icons/spa-and-beauty.svg" alt="">
+                <h3 class="our__features__subtitle">SPA and Beauty</h3>
+                <p class="our__features__text">Aromatica’s candles can also be used as a source of unique fragrance for beauty procedures.</p>
+            </div>
+            <div class="our__features__block">
+                    <span class="our__features__number">03</span>
+                    <img src="./img/icons/different-candles.svg" alt="">
+                <h3 class="our__features__subtitle">Different Candles</h3>
+                <p class="our__features__text">We offer a wide variety of candles that can be used for different purposes and add some fragrance.</p>
+            </div>
+            <div class="our__features__block">
+                    <span class="our__features__number">04</span>
+                    <img src="./img/icons/natyral-aromatics.svg" alt="">
+                <h3 class="our__features__subtitle">Natural Aromatics</h3>
+                <p class="our__features__text">Aromatica uses only natural ingredients to make the best candles with unforgettable fragrances.</p>
+            </div>
+        </section>
+        <section class="products wow bounceInUp" id="products">
+            <h3 class="products__subtitle subtitle">Featured Candles</h3>
+            <h2 class="products__title title">Our Products</h2>
+            <div class="products__tabs">
+                <button class="products__tabs__button products__tabs__button__active" data-tabs-handler="fresh">Fresh</button>
+                <button class="products__tabs__button " data-tabs-handler="sweet">Sweet</button>
+                <button class="products__tabs__button " data-tabs-handler="berry">Berry</button>
+                <div class="products__tabs__list">
+                    <ul class="products__list" data-tabs-field="fresh">
+                        <li class="products__list__item">
+                            <img src="./img/products/april-showers.png" alt="">
+                            <h3 class="products__list__title">Arril Showers</h3>
+                            <span class="products__list__price">$10.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                        <li class="products__list__item">
+                            <img src="./img/products/fresh-roses.png" alt="">
+                            <h3 class="products__list__title">Fresh Roses</h3>
+                            <span class="products__list__price">$13.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                        <li class="products__list__item">
+                            <img src="./img/products/lavander.png" alt="">
+                            <h3 class="products__list__title">Lavander Dream</h3>
+                            <span class="products__list__price">$17.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <ul class="products__list hidden" data-tabs-field="sweet">
+                        <li class="products__list__item">
+                            <img src="./img/products/butter-cream.png" alt="">
+                            <h3 class="products__list__title">Butter Cream</h3>
+                            <span class="products__list__price">$23.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                        <li class="products__list__item">
+                            <img src="./img/products/chocolate.png" alt="">
+                            <h3 class="products__list__title">Chocolate Cake</h3>
+                            <span class="products__list__price">$14.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                        <li class="products__list__item">
+                            <img src="./img/products/salted-caramel.png" alt="">
+                            <h3 class="products__list__title">Salted Caramel</h3>
+                            <span class="products__list__price">$22.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <ul class="products__list hidden" data-tabs-field="berry">
+                        <li class="products__list__item">
+                            <img src="./img/products/strawberries.png" alt="">
+                            <h3 class="products__list__title">Strawberry Dance</h3>
+                            <span class="products__list__price">$15.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                        <li class="products__list__item">
+                            <img src="./img/products/april-showers.png" alt="">
+                            <h3 class="products__list__title">Raspberry Cream</h3>
+                            <span class="products__list__price">$12.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li>
+                        <li class="products__list__item">
+                            <img src="./img/products/blueberry-scone.png" alt="">
+                            <h3 class="products__list__title">Blueberry Scone</h3>
+                            <span class="products__list__price">$11.00</span>
+                            <button class="products__options">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials">
+            <h3 class="testimonials__subtitle subtitle">What Our Customers Say</h3>
+            <h2 class="testimonials__title title">Testimonials</h2>
+            <div class="testimonials__slider">
+            <div class="testimonials__slider__item">
+                        <img class="testimonials__slider__img" src="./img/section_images/testimonials-slider.png" alt="">
+                    <div class="testimonials__slider__content">
+                        <i class="fas fa-quote-left testimonials__slider__symbol"></i>
+                        <p class="testimonials__quote">I'm loving the candles so far - I think the bergamot and tangerine one is my favorite to date. The scents I've tried are subtle but pleasant and packaging is really special.</p>
+                        <div class="testimonials__client__info">
+                            <img src="./img/kate-smith-client.png" alt="">
+                            <div class="testimonials__client__data">
+                                <p class="testimonials__client">Kate Smith</p>
+                                <span class="testimonials__client__status">Client</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="testimonials__slider__item">
+                <img class="testimonials__slider__img" src="./img/section_images/testimonials-slider.png" alt="">
+            <div class="testimonials__slider__content">
+                <i class="fas fa-quote-left testimonials__slider__symbol"></i>
+                <p class="testimonials__quote">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, ullam recusandae? Inventore vero unde illo nihil architecto autem similique laborum.</p>
+                <div class="testimonials__client__info">
+                    <img src="./img/alice-waard-client.png" alt="">
+                    <div class="testimonials__client__data">
+                        <p class="testimonials__client">Alice Waard</p>
+                        <span class="testimonials__client__status">Client</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+        <section class="why__us " id="why-us">
+            <div class="why__us__picture wow bounceInLeft">
+                <img src="./img/section_images/why-us.png" alt="">
+            </div>
+            <div class="why__us__content">
+               <h3 class="why__us__subtitle subtitle">Benefits of Our Candles</h3>
+               <h2 class="why__us__title title">Why Choose Us</h2> 
+               <ul class="why__us__accordeon">
+                   <li>
+                       <div class="why__us__accordeon__header wow fadeInLeft">Our candles create the right mood</div>
+                       <div class="why__us__accordeon__body hidden">Scented candles help to further accentuate an ambiance by engaging one’s olfactory senses and triggering memories. For example, summery scents like mandarin are reminiscent of sunshine, blue skies, and sprightly spirits.</div>
+                   </li>
+                   <li>
+                        <div class="why__us__accordeon__header  wow fadeInRight" data-wow-delay="1s">Scented candles can help you relax</div>
+                        <div class="why__us__accordeon__body hidden">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus incidunt pariatur dolor rerum facilis nam dicta expedita iure, voluptatem ea.</div>
+                    </li>
+                    <li>
+                        <div class="why__us__accordeon__header wow fadeInLeft" data-wow-delay="2s">Candles help you a sustain and healthy atmosphere</div>
+                        <div class="why__us__accordeon__body hidden">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus incidunt pariatur dolor rerum facilis nam dicta expedita iure, voluptatem ea.</div>
+                    </li>
+               </ul>
+            </div>
+        </section>
+        <div class="why__us__benefits">
+            <img src="./img/icons/natural.svg" alt="">
+            <img src="./img/icons/spa-center.svg" alt="">
+            <img src="./img/icons/beauty.svg" alt="">
+            <img src="./img/icons/organic-cosmetics.svg" alt="">
+        </div>
+        <section class="blog" id="blog">
+            <h3 class="blog__subtitle subtitle">From Our Blog</h3>
+            <h2 class="blog__title title">Latest Posts</h2>
+            <div class="blog__slider">
+                <div class="blog__slider__wrapper">
+                    <div class="blog__slider__picture">
+                        <a href="#">
+                        <img class="blog__slider__img" src="./img/section_images/blog-1.png" alt=""></a>
+                    </div>
+                    <h3 class="blog__slider__title"><a href="#">Best Scented Candles for Relaxation</a></h3>
+                    <span class="blog__slider__data">August 9, 2021</span>
+                </div>
+                <div class="blog__slider__wrapper">
+                    <div class="blog__slider__picture">
+                        <a href="#">
+                        <img class="blog__slider__img" src="./img/section_images/blog-2.png" alt=""></a>
+                    </div>
+                    <h3 class="blog__slider__title"><a href="#">Our Top 10 Summer Candle Scents for Your Home</a></h3>
+                    <span class="blog__slider__data">June 26, 2021</span>
+                </div>
+                <div class="blog__slider__wrapper">
+                    <div class="blog__slider__picture">
+                        <a href="#">
+                        <img class="blog__slider__img" src="./img/section_images/blog-3.png" alt=""></a>
+                    </div>
+                    <h3 class="blog__slider__title"><a href="#">What Ingredients We Use to Produce Scented Candles</a></h3>
+                    <span class="blog__slider__data">May 11, 2021</span>
+                </div>
+                <div class="blog__slider__wrapper">
+                    <div class="blog__slider__picture">
+                        <a href="#">
+                        <img class="blog__slider__img" src="./img/section_images/blog-4.png" alt=""></a>
+                    </div>
+                    <h3 class="blog__slider__title"><a href="#">How to Use Aromatherapy in Everyday Life</a></h3>
+                    <span class="blog__slider__data">March 19, 2021</span>
+                </div>
+                <div class="blog__slider__wrapper">
+                    <div class="blog__slider__picture">
+                        <a href="#">
+                        <img class="blog__slider__img" src="./img/section_images/blog-5.png" alt=""></a>
+                    </div>
+                    <h3 class="blog__slider__title"><a href="#">Creating the Best Atmosphere for Your Holidays</a></h3>
+                    <span class="blog__slider__data">December 23, 2020</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer" id="contacts">
+        <div class="footer__info">
+            <div class="footer__data">
+                <div class="footer__logo">
+                    <a href="#"><img src="./img/icons/aromatica-logo.svg" alt=""></a>
+                </div>
+                <div class="footer__schedule">
+                    <div class="footer__schedule__item">
+                        <p><b>Weekdays: </b>08:00am - 08:00pm</p>
+                    </div>
+                    <div class="footer__schedule__item">
+                        <p><b>Weekends: </b>10:00am - 06:00pm</p>
+                    </div>
+                </div>
+                <div class="footer__social">
+                    <span><b>Get Social</b></span>
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
+                </div>
+            </div>
+            <div class="footer__contacts">
+                <h3 class="footer__title">Contacts</h3>
+                <div class="footer__contacts__item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://goo.gl/maps/xjdCCauMwzQ1MwHj9">523 Sylvan Ave, 5th Floor Mountain View, CA 94041 USA</a>
+                </div>
+                <div class="footer__contacts__item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+84412345678">(+844) 123 456 78</a>
+                </div>
+                <div class="footer__contacts__item">
+                    <i class="far fa-envelope"></i>
+                    <a href="mailto:info@demolink.org">info@demolink.org</a>
+                </div>
+            </div>
+            <div class="footer__newsletter">
+                <h3 class="footer__title">Newsletter</h3>
+                <p class="footer__subscribe">Subscribe to our newsletter to receive weekly news, updates, special offers, and exclusive discounts.</p>
+                <form action="#" method="get" class="footer__newsletter__form">
+                    <input type="email" name="email" placeholder="Enter your e-mail" required>
+                    <button type="submit"><i class="far fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer__rights">
+            <span class="footer__copyright">&copy; 2019. Aromatica. All rights reserved.</span>
+            <div class="footer__payment__systems">
+                <img src="./img/icons/visa.svg" alt="">
+                <img src="./img/icons/master-card.svg" alt="">
+                <img src="./img/icons/paypal.svg" alt="">
+            </div>
+            <a class="footer__privacy__policy" href="#">Privacy Policy</a>
+        </div>
+    </footer>
+   <script src="./js/jquery.js"></script> 
+   <script src="./js/slick.js"></script>
+   <script src="./js/wow.min.js"></script>
+   <script>
+    new WOW({
+        offset: 300,
+        mobile: false
+    }).init();
+  </script>
+   <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+@media screen and (max-width: 1200px) {
+    .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+        padding: $paddingUpTo1200;
+    }
+    .testimonials__slider__content {
+        max-width: 450px;
+    }
+    .blog__slider__picture {
+        width: 18vw;
+    }
+}
+@media screen and (max-width: 992px) {
+    .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+        padding: $paddingUpTo992;
+    }
+    .our__features__block {
+        width: 20vw;
+    }
+    .testimonials__slider__img {
+        width: 95%;
+    }
+    .testimonials__slider__content {
+        top: 0%;
+        margin-left: -37%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+        padding: $paddingUpTo768;
+    }
+    .header {
+        &__nav {
+            position: relative;
+        }
+        &__menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: -300%;
+            width: 30vw;
+            background: $colorGreen;
+            transition: all 0.4s ease;
+            &.open {
+                top: 5vh;
+                left: 45vw;
+            }
+        }
+        &__link {
+            line-height: 13vh;
+        }
+        &__burger {
+        display: block;
+        position: relative;
+        width: 45px;
+        height: 45px;
+        transition: 0.3s;
+        & span {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 50px;
+            background: $colorBrown;
+            width: 100%;
+            height: 2px;
+            transition: 0.3s;
+            &::before, &::after {
+                display: block;
+                content: '';
+                background-color: $colorBrown;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                right: 0;
+                transition-duration: 0.3s, 0.3s;
+            }
+            &::before {
+                top: -10px;
+                transition-property: top, transform;
+            }
+            &::after {
+                bottom: -10px;
+                transition-property: bottom, transform;
+            } 
+        }
+        &.open span {
+            transition: 0.5s; 
+            background: none;
+        }
+        &.open span::before {
+            transform: rotate(45deg);
+            top: 0;
+            transition: 0.4s;
+        }
+        &.open span::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+            transition: 0.4s;
+        }
+    }
+    }
+    .header__cart {
+        width: 10%;
+    }
+    .welcome__slider__content {
+        width: 55vw;
+    }
+    .welcome__slider__text {
+        max-width: 80vw;
+    }
+    .about__us {
+        flex-direction: column;
+        align-items: center;
+        margin: 100px auto;
+        &__picture {
+            width: 85%;
+        }
+        &__info {
+            max-width: 75vw;
+        }
+    }
+    .products__list__item {
+        width: 25vw;
+        max-height: 230px;
+    }
+    .testimonials__slider__img {
+        width: 90%;
+    }
+    .testimonials__slider__content {
+        max-width: 55vw;
+    }
+    .testimonials__slider__symbol {
+        margin: 0;
+        padding-top: 30px;
+    }
+    .why__us {
+        flex-direction: column;
+        align-items: center;
+        &__picture {
+            padding: 125px 0 0 0;
+            width: 60vw;
+        }
+        &__content {
+            padding: 100px 0 50px 0;
+            max-width: 80vw;
+        }
+    }
+    .blog {
+        padding: 0 30px;
+    }
+    .blog__slider__picture {
+        width: 23vw;
+    }
+    .blog__slider__title {
+        width: 90%;
+    }
+    .footer {
+        &__data, &__contacts, &__newsletter {
+            width: 25vw;
+        }
+    }
+}
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .testimonials__slider {
+        &__img {
+            width: 85%;
+        }
+        &__content {
+            max-width: 60vw;
+            margin-left: -36%;
+        }
+        &__symbol {
+            padding-top: 45px;
+        }
+    }
+}
+@media screen and (max-width: 576px) {
+    .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+        padding: $paddingUpTo576;
+    }
+    .header__menu {
+        &.open {
+            left: 0;
+            width: 50vw;
+        }
+    }
+    .header__cart {
+        width: 25%;
+    }
+    .products__list__item img {
+        width: 100%;
+    }
+    .why__us__accordeon__header::before {
+        margin: 0 10px 20px 0;
+    }
+    .why__us__benefits img {
+        max-width: 15vw;
+    }
+    .blog__slider__picture {
+        width: 50vw;
+    }
+    .footer {
+        &__info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &__data, &__contacts, &__newsletter {
+            width: 45vw;
+            padding: 20px 0;
+        }
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 576px) {
+    .header, .about__us, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+        padding: 0 calc(50vw - 200px);
+    }
+    .title {
+    font-size: 30px;
+    }
+    .subtitle {
+    font-size: 15px;
+    }
+    .header {
+        height: 90px;
+        &__burger {
+            width: 85px;
+        }
+    }
+    .welcome__slider__content {
+        width: 80vw;
+        padding: $paddingUpTo320;
+    }
+    .about__us {
+        margin: 80px auto;
+        &__info {
+            width: 90vw;
+            img {
+                max-width: 85px;
+            }
+        }
+        &__picture {
+            width: 90%;
+        }
+        &__founder__info {
+            margin-left: 5%;
+        }
+    }
+    .our__features {
+        display: flex;
+        flex-direction: column;
+        &__block {
+            width: 100vw;
+            max-width: 300px;
+            margin: 15px auto;
+        }
+        &__number {
+            font-size: 40px;
+        }
+    }
+    .products {
+        &__subtitle {
+            margin-top: 80px;
+        }
+        &__list__item {
+            width: 30vw;
+            min-width: 50px;
+            max-height: 230px;
+            margin: 35px 10px;
+            padding: 30px 15px;
+        }
+    }
+    .testimonials {
+        &__subtitle {
+            padding-top: 80px;
+        }
+        &__slider__img {
+                width: 95%;
+                height: 250px;
+        }
+        &__quote {
+            margin-bottom: 20px;
+        }
+        &__slider__content {
+                max-width: 80vw;
+                margin-left: -38%;
+                font-size: 0.9em;
+            }
+        }
+    .why__us {
+        &__picture {
+            padding: 80px 0 0 0;
+            width: 75vw;
+        }
+        &__content {
+            padding: 50px 0;
+            margin-left: 0;
+            max-width: 90vw;
+        }
+    }
+    .blog {
+        &__subtitle {
+            margin-top: 60px;
+        }
+        &__slider {
+            margin-bottom: 100px;
+            &__picture {
+                width: 70vw;
+            }
+        }
+    }
+    .footer {
+        &__data, &__contacts, &__newsletter {
+            width: 50vw;
+            font-size: 1.1em;
+        }
+    } 
+}
