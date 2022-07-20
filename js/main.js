@@ -64,29 +64,112 @@ aboutUsButton.addEventListener('click', () => {
   aboutUsText.classList.toggle('hidden');
 });
 
+// --------- products tabs render------------
 
-// ---------products tabs ------------
+const file = `../js/products.json`;
+const tabsWrapper = document.querySelector('.products__tabs');
 
-let tabsButtons = document.querySelectorAll('[data-tabs-handler]');
-let productsLists = document.querySelectorAll('[data-tabs-field]');
+const controller = async (path, method=`GET`) => {
+  let options = {
+    method: method,
+    headers: {
+      "Content-type" : "application/json"
+    }
+  }
 
-for (let btn of tabsButtons) {
-  btn.addEventListener('click', () => {
-    tabsButtons.forEach(item => {
-      item.classList.remove('products__tabs__button__active');
-      btn.classList.add('products__tabs__button__active');
+  let request = await fetch(path, options);
+  if (request.ok) return request.json()
+  else throw Error (request.status)
+}
 
-      productsLists.forEach(prod => {
-        if(prod.dataset.tabsField === btn.dataset.tabsHandler) {
-          prod.classList.remove('hidden');
-        } else {
-          prod.classList.add('hidden');
-        }
-      });
+const getProductsInfo = async () => controller(file);
+
+const getCategories = async () => {
+  let productsInfo = await getProductsInfo();
+  let categories = productsInfo.map(item => item.tab)
+  let uniqueCategories = categories.filter((item, index, array) => array.indexOf(item) === index)
+  // console.log(uniqueCategories); //  ['fresh', 'sweet', 'berry']
+  return uniqueCategories;
+}
+
+const renderTabBtns = async () => {
+  let uniqueTabsNames = await getCategories();
+  uniqueTabsNames.forEach((elem, index) => {
+    let tabBtn = document.createElement('button');
+    tabBtn.className = 'products__tabs__button';
+    !index && tabBtn.classList.add('products__tabs__button__active');
+    tabBtn.innerHTML = elem;
+    tabBtn.dataset.category = elem;
+    tabsWrapper.prepend(tabBtn);
+
+    tabBtn.addEventListener(`click`, ()=> {
+      
+      let tabsButtons = document.querySelectorAll('.products__tabs__button'),
+          productsCats = document.querySelectorAll('ul[data-category]');
+
+      for (let btn of tabsButtons) {
+        btn.addEventListener('click', () => {
+          tabsButtons.forEach(button => {
+            button.classList.remove('products__tabs__button__active');
+            btn.classList.add('products__tabs__button__active');
+
+            productsCats.forEach(category => {
+              if(category.dataset.category === btn.dataset.category) {
+                category.classList.remove('hidden');
+              } else {
+                category.classList.add('hidden');
+              }});
+          })
+        })
+      }
     })
   })
-};
+}
+renderTabBtns();
 
+let productsWrapper = document.createElement('div');
+productsWrapper.className = 'products__tabs__list';
+tabsWrapper.append(productsWrapper);
+
+const renderCategories = async () => {
+  let categories = await getCategories();
+ // console.log(`in render cats`, categories) // ['fresh', 'sweet', 'berry']
+
+  categories.forEach((category, index) => {
+    let productList = document.createElement('ul');
+    productList.classList = ['products__list', 'hidden'].join(' ');
+    productList.dataset.category = category;
+    !index && productList.classList.remove('hidden');
+    productsWrapper.append(productList);
+  })
+}
+
+renderCategories();
+
+const renderProductCards = async () => {
+  const products = await getProductsInfo();
+
+  products.forEach(product => {
+    let productCard = document.createElement('li');
+    productCard.className = 'products__list__item';
+    productCard.innerHTML = `
+    <img src="./img/products/${product.img}.png" alt="${product.img}">
+    <h3 class="products__list__title">${product.name}</h3>
+    <span class="products__list__price">$${product.price.toFixed(2)}</span>
+    `
+    let basketBtn = document.createElement('button');
+    basketBtn.className = 'products__options';
+    basketBtn.innerHTML = `<i class="fas fa-cart-plus"></i>`;
+    basketBtn.dataset.favourite = false;
+
+    productCard.append(basketBtn);
+
+    let tab = document.querySelector(`ul[data-category="${product.tab}"]`);
+    tab.append(productCard);
+  })
+}
+
+renderProductCards();
 
 // -----------testimonials slider-----------
 

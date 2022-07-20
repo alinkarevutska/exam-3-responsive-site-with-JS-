@@ -1,0 +1,65 @@
+[
+    {
+        "id": "01",
+        "tab": "fresh",
+        "img": "april-showers",
+        "name": "April Showers",
+        "price": 10.00
+    },
+    {
+        "id": "02",
+        "tab": "sweet",
+        "img": "butter-cream",
+        "name": "Butter Cream",
+        "price": 23.00
+    },
+    {
+        "id": "03",
+        "tab": "berry",
+        "img": "strawberries",
+        "name": "Strawberry Dance",
+        "price": 15.00
+    },
+    {
+        "id": "04",
+        "tab": "fresh",
+        "img": "fresh-roses",
+        "name": "Fresh Roses",
+        "price": 13.00
+    },
+    {
+        "id": "05",
+        "tab": "fresh",
+        "img": "lavander",
+        "name": "Lavander cream",
+        "price": 17.00
+    },
+    {
+        "id": "06",
+        "tab": "sweet",
+        "img": "chocolate",
+        "name": "Chocolate cake",
+        "price": 14.00
+    },
+    {
+        "id": "07",
+        "tab": "sweet",
+        "img": "salted-caramel",
+        "name": "Salted Caramel",
+        "price": 22.00
+    },
+    {
+        "id": "08",
+        "tab": "berry",
+        "img": "april-showers",
+        "name": "Raspberry Cream",
+        "price": 12.00
+    },
+    {
+        "id": "09",
+        "tab": "berry",
+        "img": "blueberry-scone",
+        "name": "Blueberry Scone",
+        "price": 11.00
+    }
+]
