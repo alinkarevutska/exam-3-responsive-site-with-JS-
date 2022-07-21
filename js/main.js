@@ -1,4 +1,69 @@
-'use strict';
+const PRODUCTS = [
+  {
+      "id": "01",
+      "tab": "fresh",
+      "img": "april-showers",
+      "name": "April Showers",
+      "price": 10.00
+  },
+  {
+      "id": "02",
+      "tab": "sweet",
+      "img": "butter-cream",
+      "name": "Butter Cream",
+      "price": 23.00
+  },
+  {
+      "id": "03",
+      "tab": "berry",
+      "img": "strawberries",
+      "name": "Strawberry Dance",
+      "price": 15.00
+  },
+  {
+      "id": "04",
+      "tab": "fresh",
+      "img": "fresh-roses",
+      "name": "Fresh Roses",
+      "price": 13.00
+  },
+  {
+      "id": "05",
+      "tab": "fresh",
+      "img": "lavander",
+      "name": "Lavander cream",
+      "price": 17.00
+  },
+  {
+      "id": "06",
+      "tab": "sweet",
+      "img": "chocolate",
+      "name": "Chocolate cake",
+      "price": 14.00
+  },
+  {
+      "id": "07",
+      "tab": "sweet",
+      "img": "salted-caramel",
+      "name": "Salted Caramel",
+      "price": 22.00
+  },
+  {
+      "id": "08",
+      "tab": "berry",
+      "img": "april-showers",
+      "name": "Raspberry Cream",
+      "price": 12.00
+  },
+  {
+      "id": "09",
+      "tab": "berry",
+      "img": "blueberry-scone",
+      "name": "Blueberry Scone",
+      "price": 11.00
+  }
+];
+
 // ------smooth scroll to sections------
 
 let linksHeader = document.querySelectorAll('.header__link');
@@ -66,34 +131,19 @@ aboutUsButton.addEventListener('click', () => {
 
 // --------- products tabs render------------
 
-const file = `../js/products.json`;
 const tabsWrapper = document.querySelector('.products__tabs');
 
-const controller = async (path, method=`GET`) => {
-  let options = {
-    method: method,
-    headers: {
-      "Content-type" : "application/json"
-    }
-  }
-
-  let request = await fetch(path, options);
-  if (request.ok) return request.json()
-  else throw Error (request.status)
-}
-
-const getProductsInfo = async () => controller(file);
-
-const getCategories = async () => {
-  let productsInfo = await getProductsInfo();
-  let categories = productsInfo.map(item => item.tab)
+const getUniqueCategories = () => {
+  let categories = PRODUCTS.map(item => item.tab)
   let uniqueCategories = categories.filter((item, index, array) => array.indexOf(item) === index)
   // console.log(uniqueCategories); //  ['fresh', 'sweet', 'berry']
   return uniqueCategories;
 }
 
-const renderTabBtns = async () => {
-  let uniqueTabsNames = await getCategories();
+getUniqueCategories();
+
+const renderTabBtns = uniqueCategories => {
+  let uniqueTabsNames = uniqueCategories;
   uniqueTabsNames.forEach((elem, index) => {
     let tabBtn = document.createElement('button');
     tabBtn.className = 'products__tabs__button';
@@ -103,7 +153,6 @@ const renderTabBtns = async () => {
     tabsWrapper.prepend(tabBtn);
 
     tabBtn.addEventListener(`click`, ()=> {
-      
       let tabsButtons = document.querySelectorAll('.products__tabs__button'),
           productsCats = document.querySelectorAll('ul[data-category]');
 
@@ -125,17 +174,14 @@ const renderTabBtns = async () => {
     })
   })
 }
-renderTabBtns();
+renderTabBtns(getUniqueCategories());
 
 let productsWrapper = document.createElement('div');
 productsWrapper.className = 'products__tabs__list';
 tabsWrapper.append(productsWrapper);
 
-const renderCategories = async () => {
-  let categories = await getCategories();
- // console.log(`in render cats`, categories) // ['fresh', 'sweet', 'berry']
-
-  categories.forEach((category, index) => {
+const renderCategories = uniqueCategories => {
+ uniqueCategories.forEach((category, index) => {
     let productList = document.createElement('ul');
     productList.classList = ['products__list', 'hidden'].join(' ');
     productList.dataset.category = category;
@@ -144,12 +190,10 @@ const renderCategories = async () => {
   })
 }
 
-renderCategories();
+renderCategories(getUniqueCategories());
 
-const renderProductCards = async () => {
-  const products = await getProductsInfo();
-
-  products.forEach(product => {
+const renderProductCards = () => {
+  PRODUCTS.forEach(product => {
     let productCard = document.createElement('li');
     productCard.className = 'products__list__item';
     productCard.innerHTML = `
