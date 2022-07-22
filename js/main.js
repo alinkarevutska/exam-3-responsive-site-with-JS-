@@ -153,24 +153,18 @@ const renderTabBtns = uniqueCategories => {
     tabsWrapper.prepend(tabBtn);
 
     tabBtn.addEventListener(`click`, ()=> {
-      let tabsButtons = document.querySelectorAll('.products__tabs__button'),
+      let tabBtnActive = document.querySelector('.products__tabs__button__active'),
           productsCats = document.querySelectorAll('ul[data-category]');
-
-      for (let btn of tabsButtons) {
-        btn.addEventListener('click', () => {
-          tabsButtons.forEach(button => {
-            button.classList.remove('products__tabs__button__active');
-            btn.classList.add('products__tabs__button__active');
+            
+          tabBtnActive.classList.remove('products__tabs__button__active');
+          tabBtn.classList.add('products__tabs__button__active');
 
             productsCats.forEach(category => {
-              if(category.dataset.category === btn.dataset.category) {
+              if(category.dataset.category === tabBtn.dataset.category) {
                 category.classList.remove('hidden');
               } else {
                 category.classList.add('hidden');
               }});
-          })
-        })
-      }
     })
   })
 }
