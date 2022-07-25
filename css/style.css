@@ -462,8 +462,9 @@ body {
   outline: none;
   border: none;
   cursor: pointer;
-  position: absolute;
-  right: 0;
+  position: fixed;
+  top: 12%;
+  right: 12%;
 }
 
 .header__basket__close:hover {
@@ -504,11 +505,12 @@ body {
 }
 
 .header__basket__products {
-  display: block;
   background-color: white;
   width: 75vw;
-  height: 50vh;
+  height: 70vh;
+  padding: 30px;
   position: relative;
+  overflow: auto;
 }
 
 .header__link {
@@ -533,6 +535,67 @@ body {
 
 .header__burger {
   display: none;
+}
+
+.basket__product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
+  margin: 15px 0;
+  background: #e8edde;
+  border: 3px solid #e8edde;
+  border-radius: 10px;
+}
+
+.basket__product:hover {
+  background: #f3f7ec;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.basket__product h3 {
+  width: 30%;
+}
+
+.basket__product__img {
+  width: 10%;
+  height: 10%;
+}
+
+.basket__product__remove {
+  background: #d0af8a;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  margin-right: 30px;
+}
+
+.basket__product__remove:hover {
+  background: white;
+  border: 1px solid #d0af8a;
+  color: #d0af8a;
+  -webkit-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+}
+
+.basket__product__remove:active {
+  background: #d0af8a;
+  color: white;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .fas {

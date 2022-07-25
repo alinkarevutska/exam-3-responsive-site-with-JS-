@@ -54,8 +54,9 @@ body {
         }
         &__close {
             @include buttonBrown; 
-            position: absolute;
-            right: 0;
+            position: fixed;
+            top: 12%;
+            right: 12%;
         }
         &__popup {
             display: none;
@@ -72,11 +73,12 @@ body {
             align-items: center;
         }
         &__products {
-            display: block;
             background-color: white;
             width: 75vw;
-            height: 50vh;
+            height: 70vh;
+            padding: 30px;
             position: relative;
+            overflow: auto;
         }
     }
     &__link {
@@ -98,6 +100,35 @@ body {
         display: none;
     }
 }
+
+.basket__product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;;
+    padding: 5px;
+    margin: 15px 0;
+    background: $colorDarkGreen;
+    border: 3px solid $colorDarkGreen;
+    border-radius: 10px;
+    &:hover {
+        background: $colorGreen;
+        transition: .3s ease;
+    }
+    h3 {
+        width: 30%;
+    }
+    &__img {
+        width: 10%;
+        height: 10%;
+    }
+    &__remove {
+        @include buttonBrown;
+        @include buttonBrownCircle;
+        color: white;
+        margin-right: 30px;
+    }
+}
+
 .fas {
     line-height: 2;
 }

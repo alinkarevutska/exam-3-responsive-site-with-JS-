@@ -87,8 +87,13 @@ const getStorageProducts = () => {
   return storageProducts;
 }
 const storageProducts = getStorageProducts();
-let productQuantity = document.querySelector('.header__basket__count');
-productQuantity.innerHTML = storageProducts.length;
+
+const getProductQuantity = () => {
+  let productQuantity = document.querySelector('.header__basket__count');
+  productQuantity.innerHTML = storageProducts.length;
+}
+
+getProductQuantity();
 
 // --------- products tabs render------------
 
@@ -146,6 +151,35 @@ const renderCategories = uniqueCategories => {
 
 renderCategories(getUniqueCategories());
 
+const renderProductsInBasket = product => {
+let productInBasket = document.createElement('div');
+productInBasket.className = 'basket__product';
+productInBasket.dataset.id = product.id;
+productInBasket.innerHTML = `
+    <h3 class="basket__product__title">${product.name}</h3>
+    <img class="basket__product__img" src="./img/products/${product.img}.png" alt="${product.img}">
+    <span class="basket__product__price">$${product.price.toFixed(2)}</span>
+`;
+
+let removeFromBasketBtn = document.createElement('button');
+removeFromBasketBtn.className = 'basket__product__remove';
+removeFromBasketBtn.innerHTML = `<i class="fas fa-trash"></i>`;
+
+removeFromBasketBtn.addEventListener(`click`, () => {
+  let indexOfProduct = storageProducts.findIndex(product => product.id === productInBasket.dataset.id)
+  storageProducts.splice(indexOfProduct, 1);
+  localStorage.setItem(`products`, JSON.stringify(storageProducts));
+  getProductQuantity();
+  productInBasket.remove();
+})
+
+productInBasket.append(removeFromBasketBtn);
+headerBasketProducts.append(productInBasket);
+}
+
+storageProducts.forEach(product => renderProductsInBasket(product));
+
+
 const renderProductCards = () => {
   PRODUCTS.forEach(product => {
     let productCard = document.createElement('li');
@@ -167,8 +201,10 @@ const renderProductCards = () => {
          
       if(!productAddedIndex) {
         storageProducts.push(product);
-        productQuantity.innerHTML = storageProducts.length;
+        getProductQuantity();
+        // productQuantity.innerHTML = storageProducts.length;
         localStorage.setItem(`products`, JSON.stringify(storageProducts))
+        renderProductsInBasket(product);
         console.log(`after adding products`, storageProducts, storageProducts.length);
       } else {
         alert(`Product '${product.name}' has already been added to your basket!`)
