@@ -404,7 +404,7 @@ body {
   text-transform: uppercase;
 }
 
-.header__cart {
+.header__basket {
   background: #d0af8a;
   color: white;
   text-transform: uppercase;
@@ -415,9 +415,10 @@ body {
   height: 50px;
   border-radius: 50%;
   font-size: 20px;
+  position: relative;
 }
 
-.header__cart:hover {
+.header__basket:hover {
   background: white;
   border: 1px solid #d0af8a;
   color: #d0af8a;
@@ -425,11 +426,89 @@ body {
   transition: 0.5s ease all;
 }
 
-.header__cart:active {
+.header__basket:active {
   background: #d0af8a;
   color: white;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+.header__basket__count {
+  position: absolute;
+  top: 0px;
+  right: -8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #d0af8a;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 1px solid #d0af8a;
+  border-radius: 50%;
+}
+
+.header__basket__close {
+  background: #d0af8a;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+.header__basket__close:hover {
+  background: white;
+  border: 1px solid #d0af8a;
+  color: #d0af8a;
+  -webkit-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+}
+
+.header__basket__close:active {
+  background: #d0af8a;
+  color: white;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.header__basket__popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.295);
+}
+
+.header__basket__popup.open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__basket__products {
+  display: block;
+  background-color: white;
+  width: 75vw;
+  height: 50vh;
+  position: relative;
 }
 
 .header__link {
@@ -456,6 +535,10 @@ body {
   display: none;
 }
 
+.fas {
+  line-height: 2;
+}
+
 .fixed-page {
   overflow: hidden;
 }
@@ -465,7 +548,7 @@ body {
   height: 100%;
 }
 
-.welcome__slider__picture {
+.welcome__slider__picture img {
   width: 100%;
 }
 

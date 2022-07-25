@@ -28,9 +28,16 @@
         <div class="header__burger">
             <span></span>
         </div>
-        <button class="header__cart">
+        <button class="header__basket" id="headerBasketBtn">
             <i class="fas fa-cart-plus"></i>
+            <span class="header__basket__count">0</span>
         </button>
+        <div class="header__basket__popup" id="headerBasketPopup">
+                <div class="header__basket__products" id="headerBasketProducts">
+                    <button class="header__basket__close"  id="headerBasketClose">Close</button>
+                </div>
+        </div>
+        
     </header>
     <main class="main">
         <section class="welcome__slider slider">

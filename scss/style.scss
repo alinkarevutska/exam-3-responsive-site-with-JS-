@@ -32,10 +32,52 @@ body {
         align-items: center;
         @include poppinsMedium;
     }
-    &__cart {
+    &__basket {
         @include buttonBrown;
         @include buttonBrownCircle;
         font-size: 20px;
+        position: relative;
+        &__count {
+            position: absolute;
+            top: 0px;
+            right: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $colorBrown;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 1px solid $colorBrown;
+            border-radius: 50%;
+        }
+        &__close {
+            @include buttonBrown; 
+            position: absolute;
+            right: 0;
+        }
+        &__popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.295);
+        }
+        &__popup.open{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__products {
+            display: block;
+            background-color: white;
+            width: 75vw;
+            height: 50vh;
+            position: relative;
+        }
     }
     &__link {
         padding: 5px;
@@ -56,13 +98,16 @@ body {
         display: none;
     }
 }
+.fas {
+    line-height: 2;
+}
 .fixed-page{
     overflow: hidden;
 }
 .welcome__slider {
     width: 100vw;
     height: 100%;
-    &__picture {
+    &__picture img {
         width: 100%;
     }
     &_1, &_2 {
