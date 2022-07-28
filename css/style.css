@@ -1719,8 +1719,14 @@ body {
   }
 }
 
+@media screen and (min-width: 321px) and (max-width: 450px) {
+  .header__basket {
+    width: 100px;
+  }
+}
+
 @media screen and (min-width: 320px) and (max-width: 576px) {
-  .header, .about__us, .testimonials, .why__us__benefits, .footer__info, .footer__rights {
+  .about__us, .testimonials, .why__us__benefits, .footer__info, .footer__rights {
     padding: 0 calc(50vw - 150px);
   }
   .title {
@@ -1745,7 +1751,7 @@ body {
     width: 85px;
   }
   .header__basket__products {
-    width: 80vw;
+    width: 90vw;
   }
   .basket__product h3 {
     width: 30%;
