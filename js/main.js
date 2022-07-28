@@ -151,34 +151,81 @@ const renderCategories = uniqueCategories => {
 
 renderCategories(getUniqueCategories());
 
+// --------- products in basket render------------
+
 const renderProductsInBasket = product => {
-let productInBasket = document.createElement('div');
-productInBasket.className = 'basket__product';
-productInBasket.dataset.id = product.id;
-productInBasket.innerHTML = `
-    <h3 class="basket__product__title">${product.name}</h3>
-    <img class="basket__product__img" src="./img/products/${product.img}.png" alt="${product.img}">
-    <span class="basket__product__price">$${product.price.toFixed(2)}</span>
-`;
+  let productInBasket = document.createElement('div');
+  productInBasket.className = 'basket__product';
+  productInBasket.dataset.id = product.id;
+  productInBasket.innerHTML = `
+      <h3 class="basket__product__title">${product.name}</h3>
+      <img class="basket__product__img" src="./img/products/${product.img}.png" alt="${product.img}">
+      <span class="basket__product__price">$${product.price.toFixed(2)}</span>
+  `;
 
-let removeFromBasketBtn = document.createElement('button');
-removeFromBasketBtn.className = 'basket__product__remove';
-removeFromBasketBtn.innerHTML = `<i class="fas fa-trash"></i>`;
+  headerBasketProducts.append(productInBasket);
 
-removeFromBasketBtn.addEventListener(`click`, () => {
-  let indexOfProduct = storageProducts.findIndex(product => product.id === productInBasket.dataset.id)
-  storageProducts.splice(indexOfProduct, 1);
-  localStorage.setItem(`products`, JSON.stringify(storageProducts));
-  getProductQuantity();
-  productInBasket.remove();
-})
+  let changeProductQuantity = document.createElement('div');
+  changeProductQuantity.className = 'change__number'
+  changeProductQuantity.innerHTML = `
+    <input type="number" class="change__number__input" name="" value="1" readonly>
+  `;
 
-productInBasket.append(removeFromBasketBtn);
-headerBasketProducts.append(productInBasket);
+  productInBasket.append(changeProductQuantity);
+
+  const productQuantityInput = changeProductQuantity.querySelector('input[type="number"]');
+
+  let decrement = document.createElement('button');
+  decrement.className = 'change__number decrease';
+  decrement.dataset.id = product.id;
+  decrement.innerHTML = `−`;
+  decrement.addEventListener(`click`, ()=>{
+    if(Number(productQuantityInput.value) > 1) {
+      productQuantityInput.value--;
+    } else {
+      decrement.setAttribute('disabled', 'disabled')
+    }
+  })
+  changeProductQuantity.prepend(decrement);
+
+  let increment = document.createElement('button');
+  increment.className = 'change__number increase';
+  increment.dataset.id = product.id;
+  increment.innerHTML = `+`;
+
+  increment.addEventListener(`click`, ()=>{
+        if(Number(productQuantityInput.value) < product.quantity) {
+          productQuantityInput.value++;
+        } else {
+          alert(`Oops! 😕 \n We don't have ${product.name} anymore!`);
+          increment.setAttribute('disabled', 'disabled')
+        }
+  })
+
+  changeProductQuantity.append(increment);
+
+  let removeFromBasketBtn = document.createElement('button');
+  removeFromBasketBtn.className = 'basket__product__remove';
+  removeFromBasketBtn.innerHTML = `<i class="fas fa-trash"></i>`;
+
+  removeFromBasketBtn.addEventListener(`click`, () => {
+    let indexOfProduct = storageProducts.findIndex(product => product.id === productInBasket.dataset.id)
+    storageProducts.splice(indexOfProduct, 1);
+    localStorage.setItem(`products`, JSON.stringify(storageProducts));
+    getProductQuantity();
+    productInBasket.remove();
+  })
+
+  productInBasket.append(removeFromBasketBtn);
+  
 }
+
+basketButton.addEventListener(`click`, () => headerBasketPopup.classList.add('open'));
+basketCloseButton.addEventListener(`click`, ()=> headerBasketPopup.classList.remove('open'));
 
 storageProducts.forEach(product => renderProductsInBasket(product));
 
+// --------- products cards render------------
 
 const renderProductCards = () => {
   PRODUCTS.forEach(product => {
@@ -202,10 +249,9 @@ const renderProductCards = () => {
       if(!productAddedIndex) {
         storageProducts.push(product);
         getProductQuantity();
-        // productQuantity.innerHTML = storageProducts.length;
         localStorage.setItem(`products`, JSON.stringify(storageProducts))
         renderProductsInBasket(product);
-        console.log(`after adding products`, storageProducts, storageProducts.length);
+        console.log(`after adding products`, storageProducts);
       } else {
         alert(`Product '${product.name}' has already been added to your basket!`)
         return;
@@ -220,15 +266,6 @@ const renderProductCards = () => {
 }
 
 renderProductCards();
-
-// ------ render products in basket------
-
-basketButton.addEventListener(`click`, () => {
-  console.log(storageProducts);
-  headerBasketPopup.classList.add('open');
-})
-
-basketCloseButton.addEventListener(`click`, ()=> {headerBasketPopup.classList.remove('open')})
 
 // ------smooth scroll to sections------
 
@@ -247,7 +284,7 @@ linksHeader.forEach(link => {
   })
 })
 
-let buttonsShop = document.querySelectorAll('.shop__button');
+let buttonsShop = document.querySelectorAll('.welcome__slider__shop__button');
 let shop__section = document.querySelector('#products');
 
 buttonsShop.forEach(button => {
@@ -263,7 +300,7 @@ buttonsShop.forEach(button => {
 $(document).ready(function() {
   $('.header__burger').click(function() {
     $('.header__burger, .header__menu').toggleClass('open');
-    $('body').addClass('fixed-page');
+    $('body').toggleClass('fixed-page');
   });
   $('.header__link').click(function(){
     $('.header__burger, .header__menu').removeClass('open');
@@ -346,7 +383,9 @@ $(document).ready(function(){
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          arrows: false,
+          dots: true,
+          slidesToShow: 3,
           slidesToScroll: 1
         }
       },

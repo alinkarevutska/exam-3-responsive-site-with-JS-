@@ -1,0 +1,139 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 130px;
+    padding: $paddingWide;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    &__nav {
+        width: 100%;
+        max-width: 500px;
+    }
+    &__menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include poppinsMedium;
+    }
+    &__basket {
+        @include buttonBrown;
+        @include buttonBrownCircle;
+        font-size: 20px;
+        position: relative;
+        &__count {
+            position: absolute;
+            top: 0px;
+            right: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $colorBrown;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 1px solid $colorBrown;
+            border-radius: 50%;
+        }
+        &__close {
+            @include buttonBrown; 
+            position: fixed;
+            top: 13%;
+            right: 20%;
+        }
+        &__popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.295);
+        }
+        &__popup.open{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__products {
+            background-color: white;
+            width: 60vw;
+            height: 70vh;
+            padding: 30px;
+            position: relative;
+            overflow: auto;
+        }
+    }
+    &__link {
+        padding: 5px;
+        &:hover {
+            border: 1px solid $colorBrown;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px 0px #777777;
+            color: white;
+            background: $colorBrown;
+        }
+        &:active {
+            background: white;
+            color: $colorBrown;
+            transition: 0.5s ease all;
+        }
+    }
+    &__burger {
+        display: none;
+    }
+}
+
+.basket__product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;;
+    padding: 5px;
+    margin: 15px 0;
+    background: $colorDarkGreen;
+    border: 3px solid $colorDarkGreen;
+    border-radius: 10px;
+    &:hover {
+        background: $colorGreen;
+        transition: .3s ease;
+    }
+    h3 {
+        width: 25%;
+        margin-left: 20px;
+    }
+    &__img {
+        width: 10%;
+        height: 10%;
+    }
+    &__remove {
+        @include buttonBrown;
+        @include buttonBrownCircle;
+        color: white;
+        margin-right: 30px;
+    }
+}
+
+.change__number {
+    & button {
+        @include buttonBrown;
+        line-height: 1.6;
+    }
+    & input {
+        width: 30px;
+        font-weight: 300;
+    }
+    & input:focus {
+        outline: none;
+    }
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+}

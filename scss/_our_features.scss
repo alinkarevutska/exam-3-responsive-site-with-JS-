@@ -1,0 +1,30 @@
+.our__features {
+    display: flex;
+    background: $colorGreen;
+    padding: $paddingWide;
+    &__block {
+        flex-direction: column;
+        margin: 125px auto;
+        max-width: 240px;
+        color: $colorLightGrey; 
+        &:nth-child(2)>.our__features__number {
+            color: lighten(#777777,10%);
+        }
+        &:nth-child(3)>.our__features__number {
+            color: lighten(#777777,20%);
+        }
+        &:nth-child(4)>.our__features__number {
+            color: lighten(#777777,30%);
+        } 
+    }
+    &__number {
+        font-size: 60px;
+    }
+    &__subtitle {
+        font-weight: 400;
+    }
+    &__text {
+        font-family: $fontLato;
+        line-height: 20px;
+    }
+}

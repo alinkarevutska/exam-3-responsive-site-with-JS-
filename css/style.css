@@ -364,13 +364,34 @@ body {
   color: #434345;
 }
 
+.fas {
+  line-height: 2;
+}
+
+.fixed-page {
+  overflow: hidden;
+}
+
+.title {
+  color: #d0af8a;
+  font-size: 40px;
+}
+
+.subtitle {
+  color: #777777;
+  font-size: 20px;
+}
+
+.text {
+  color: #434345;
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -463,8 +484,8 @@ body {
   border: none;
   cursor: pointer;
   position: fixed;
-  top: 12%;
-  right: 12%;
+  top: 13%;
+  right: 20%;
 }
 
 .header__basket__close:hover {
@@ -506,7 +527,7 @@ body {
 
 .header__basket__products {
   background-color: white;
-  width: 75vw;
+  width: 60vw;
   height: 70vh;
   padding: 30px;
   position: relative;
@@ -561,7 +582,8 @@ body {
 }
 
 .basket__product h3 {
-  width: 30%;
+  width: 25%;
+  margin-left: 20px;
 }
 
 .basket__product__img {
@@ -598,12 +620,44 @@ body {
           transform: scale(1.1);
 }
 
-.fas {
-  line-height: 2;
+.change__number button {
+  background: #d0af8a;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.6;
 }
 
-.fixed-page {
-  overflow: hidden;
+.change__number button:hover {
+  background: white;
+  border: 1px solid #d0af8a;
+  color: #d0af8a;
+  -webkit-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+}
+
+.change__number button:active {
+  background: #d0af8a;
+  color: white;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.change__number input {
+  width: 30px;
+  font-weight: 300;
+}
+
+.change__number input:focus {
+  outline: none;
+}
+
+.change__number input[type='number']::-webkit-inner-spin-button,
+.change__number input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .welcome__slider {
@@ -622,9 +676,9 @@ body {
 .welcome__slider__content {
   padding: 0 calc(50vw - 600px);
   position: absolute;
-  top: 20%;
+  top: 25%;
   width: 100%;
-  max-width: 500px;
+  max-width: 70vw;
   color: #777777;
 }
 
@@ -633,27 +687,13 @@ body {
 }
 
 .welcome__slider__text {
-  max-width: 350px;
+  max-width: 25vw;
   font-size: 20px;
   line-height: 30px;
   padding-bottom: 40px;
 }
 
-.title {
-  color: #d0af8a;
-  font-size: 40px;
-}
-
-.subtitle {
-  color: #777777;
-  font-size: 20px;
-}
-
-.text {
-  color: #434345;
-}
-
-.shop__button {
+.welcome__slider__shop__button {
   background: #d0af8a;
   color: white;
   text-transform: uppercase;
@@ -665,7 +705,7 @@ body {
   border-radius: 30px;
 }
 
-.shop__button:hover {
+.welcome__slider__shop__button:hover {
   background: white;
   border: 1px solid #d0af8a;
   color: #d0af8a;
@@ -673,7 +713,7 @@ body {
   transition: 0.5s ease all;
 }
 
-.shop__button:active {
+.welcome__slider__shop__button:active {
   background: #d0af8a;
   color: white;
   -webkit-transform: scale(1.1);
@@ -938,6 +978,14 @@ body {
           transform: scale(1.1);
 }
 
+.hidden {
+  display: none;
+}
+
+.opened {
+  display: block;
+}
+
 .testimonials {
   background: url(../img/section_images/testimonials-background.png) no-repeat;
   background-size: cover;
@@ -1148,14 +1196,6 @@ body {
           transform: scale(1.1);
 }
 
-.hidden {
-  display: none;
-}
-
-.opened {
-  display: block;
-}
-
 .blog {
   padding: 0 50px;
 }
@@ -1356,9 +1396,43 @@ body {
   padding: 0 5px;
 }
 
+@media screen and (max-width: 1400px) {
+  .welcome__slider__picture img {
+    width: 115%;
+  }
+  .welcome__slider__subtitle {
+    padding-bottom: 10px;
+  }
+  .welcome__slider__text {
+    max-width: 40vw;
+    padding-bottom: 20px;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
     padding: 0 calc(50vw - 500px);
+  }
+  .welcome__slider__picture img {
+    width: 125%;
+  }
+  .welcome__slider__content {
+    top: 30%;
+    max-width: 80vw;
+  }
+  .welcome__slider__title {
+    margin: 0;
+  }
+  .welcome__slider__subtitle {
+    padding-bottom: 0;
+  }
+  .header__basket__products {
+    width: 75vw;
+    height: 70vh;
+  }
+  .header__basket__close {
+    top: 13%;
+    right: 12%;
   }
   .testimonials__slider__content {
     max-width: 450px;
@@ -1372,14 +1446,24 @@ body {
   .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
     padding: 0 calc(50vw - 400px);
   }
+  .welcome__slider__picture img {
+    width: 145%;
+  }
+  .welcome__slider__text {
+    padding-bottom: 0;
+    max-width: 60vw;
+  }
+  .welcome__slider__shop__button {
+    height: 45px;
+  }
   .our__features__block {
-    width: 20vw;
+    width: 18vw;
   }
   .testimonials__slider__img {
     width: 95%;
   }
   .testimonials__slider__content {
-    top: 0%;
+    top: -5%;
     margin-left: -37%;
   }
 }
@@ -1407,7 +1491,7 @@ body {
             align-items: center;
     position: absolute;
     top: 0;
-    right: -300%;
+    right: -600%;
     width: 30vw;
     background: #f3f7ec;
     -webkit-transition: all 0.4s ease;
@@ -1419,6 +1503,10 @@ body {
   }
   .header__link {
     line-height: 13vh;
+  }
+  .header__basket {
+    width: 75px;
+    left: -5%;
   }
   .header__burger {
     display: block;
@@ -1486,11 +1574,18 @@ body {
   .header__cart {
     width: 10%;
   }
+  .welcome__slider__picture img {
+    width: 155%;
+  }
   .welcome__slider__content {
-    width: 55vw;
+    width: 80vw;
+  }
+  .welcome__slider__title {
+    font-size: 35px;
   }
   .welcome__slider__text {
     max-width: 80vw;
+    line-height: 20px;
   }
   .about__us {
     -webkit-box-orient: vertical;
@@ -1558,17 +1653,31 @@ body {
     width: 85%;
   }
   .testimonials__slider__content {
-    max-width: 60vw;
-    margin-left: -36%;
+    max-width: 67vw;
+    margin-left: -37%;
   }
   .testimonials__slider__symbol {
     padding-top: 45px;
   }
+  .testimonials__quote {
+    margin-bottom: 30px;
+  }
+  .footer__info {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
 }
 
 @media screen and (max-width: 576px) {
-  .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+  .header, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
     padding: 0 calc(50vw - 250px);
+  }
+  .welcome__slider__picture img {
+    width: 190%;
+  }
+  .welcome__slider__content {
+    max-width: 90vw;
+    padding-left: 20px;
   }
   .header__menu.open {
     left: 0;
@@ -1611,8 +1720,8 @@ body {
 }
 
 @media screen and (min-width: 320px) and (max-width: 576px) {
-  .header, .about__us, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
-    padding: 0 calc(50vw - 200px);
+  .header, .about__us, .testimonials, .why__us__benefits, .footer__info, .footer__rights {
+    padding: 0 calc(50vw - 150px);
   }
   .title {
     font-size: 30px;
@@ -1620,15 +1729,20 @@ body {
   .subtitle {
     font-size: 15px;
   }
+  .welcome__slider__picture img {
+    width: 320%;
+  }
+  .welcome__slider__title {
+    font-size: 25px;
+  }
+  .welcome__slider__text {
+    font-size: 16px;
+  }
   .header {
     height: 90px;
   }
   .header__burger {
     width: 85px;
-  }
-  .welcome__slider__content {
-    width: 80vw;
-    padding: 0 calc(50vw - 150px);
   }
   .about__us {
     margin: 80px auto;
@@ -1679,13 +1793,19 @@ body {
     width: 95%;
     height: 250px;
   }
-  .testimonials__quote {
-    margin-bottom: 20px;
-  }
   .testimonials__slider__content {
-    max-width: 80vw;
+    max-width: 60vw;
     margin-left: -38%;
     font-size: 0.9em;
+  }
+  .testimonials__slider__symbol {
+    padding-top: 20px;
+  }
+  .testimonials__client__info img {
+    width: 25%;
+  }
+  .testimonials__quote {
+    margin-bottom: 10px;
   }
   .why__us__picture {
     padding: 80px 0 0 0;
@@ -1705,8 +1825,13 @@ body {
   .blog__slider__picture {
     width: 70vw;
   }
+  .footer__info {
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+  }
   .footer__data, .footer__contacts, .footer__newsletter {
-    width: 50vw;
+    width: 70vw;
     font-size: 1.1em;
   }
 }

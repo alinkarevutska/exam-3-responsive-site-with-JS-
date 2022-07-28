@@ -1,6 +1,43 @@
+@media screen and (max-width: 1400px) {
+    .welcome__slider {
+        &__picture img {
+            width: 115%;
+        }
+        &__subtitle {
+            padding-bottom: 10px;
+        }
+        &__text {
+            max-width: 40vw;
+            padding-bottom: 20px;
+        }
+    }
+}
 @media screen and (max-width: 1200px) {
     .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
         padding: $paddingUpTo1200;
+    }
+    .welcome__slider {
+        &__picture img {
+            width: 125%;
+        }
+        &__content {
+            top: 30%;
+            max-width: 80vw;
+        }
+        &__title {
+            margin: 0;
+        }
+        &__subtitle {
+            padding-bottom: 0;
+        }
+    }
+    .header__basket__products {
+        width: 75vw;
+        height: 70vh;
+    }
+    .header__basket__close {
+        top: 13%;
+        right: 12%;
     }
     .testimonials__slider__content {
         max-width: 450px;
@@ -13,14 +50,26 @@
     .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
         padding: $paddingUpTo992;
     }
+    .welcome__slider {
+        &__picture img {
+            width: 145%;
+        }
+        &__text {
+            padding-bottom: 0;
+            max-width: 60vw;
+        }
+        &__shop__button {
+            height: 45px;
+        }
+    }
     .our__features__block {
-        width: 20vw;
+        width: 18vw;
     }
     .testimonials__slider__img {
         width: 95%;
     }
     .testimonials__slider__content {
-        top: 0%;
+        top: -5%;
         margin-left: -37%;
     }
 }
@@ -39,7 +88,7 @@
             align-items: center;
             position: absolute;
             top: 0;
-            right: -300%;
+            right: -600%;
             width: 30vw;
             background: $colorGreen;
             transition: all 0.4s ease;
@@ -50,6 +99,10 @@
         }
         &__link {
             line-height: 13vh;
+        }
+        &__basket {
+            width: 75px;
+            left: -5%;
         }
         &__burger {
         display: block;
@@ -104,11 +157,20 @@
     .header__cart {
         width: 10%;
     }
-    .welcome__slider__content {
-        width: 55vw;
-    }
-    .welcome__slider__text {
-        max-width: 80vw;
+    .welcome__slider {
+        &__picture img {
+            width: 155%;
+        }
+        &__content {
+            width: 80vw;
+        }
+        &__title {
+            font-size: 35px;
+        }
+        &__text {
+            max-width: 80vw;
+            line-height: 20px;
+        }
     }
     .about__us {
         flex-direction: column;
@@ -168,17 +230,32 @@
             width: 85%;
         }
         &__content {
-            max-width: 60vw;
-            margin-left: -36%;
+            max-width: 67vw;
+            margin-left: -37%;
         }
         &__symbol {
             padding-top: 45px;
         }
     }
+    .testimonials__quote {
+        margin-bottom: 30px;
+    }
+    .footer__info {
+        justify-content: space-around;
+    }
 }
 @media screen and (max-width: 576px) {
-    .header, .welcome__slider__content, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
+    .header, .about__us, .our__features, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
         padding: $paddingUpTo576;
+    }
+    .welcome__slider {
+        &__picture img {
+            width: 190%;
+        }
+        &__content {
+            max-width: 90vw;
+            padding-left: 20px;
+        }
     }
     .header__menu {
         &.open {
@@ -215,8 +292,8 @@
     }
 }
 @media screen and (min-width: 320px) and (max-width: 576px) {
-    .header, .about__us, .products__list, .testimonials, .why__us, .why__us__benefits, .footer__info, .footer__rights {
-        padding: 0 calc(50vw - 200px);
+    .header, .about__us, .testimonials, .why__us__benefits, .footer__info, .footer__rights {
+        padding: 0 calc(50vw - 150px);
     }
     .title {
     font-size: 30px;
@@ -224,15 +301,22 @@
     .subtitle {
     font-size: 15px;
     }
+    .welcome__slider {
+        &__picture img {
+            width: 320%;
+        }
+        &__title {
+            font-size: 25px;
+        }
+        &__text {
+            font-size: 16px;
+        }
+    }
     .header {
         height: 90px;
         &__burger {
             width: 85px;
         }
-    }
-    .welcome__slider__content {
-        width: 80vw;
-        padding: $paddingUpTo320;
     }
     .about__us {
         margin: 80px auto;
@@ -281,13 +365,19 @@
                 width: 95%;
                 height: 250px;
         }
-        &__quote {
-            margin-bottom: 20px;
-        }
         &__slider__content {
-                max-width: 80vw;
+                max-width: 60vw;
                 margin-left: -38%;
                 font-size: 0.9em;
+        }
+        &__slider__symbol {
+            padding-top: 20px;
+        }
+        &__client__info img {
+            width: 25%;
+        }
+        &__quote {
+                margin-bottom: 10px;
             }
         }
     .why__us {
@@ -313,8 +403,11 @@
         }
     }
     .footer {
+        &__info {
+            align-items: baseline;
+        }
         &__data, &__contacts, &__newsletter {
-            width: 50vw;
+            width: 70vw;
             font-size: 1.1em;
         }
     } 

@@ -1,0 +1,33 @@
+.welcome__slider {
+    width: 100vw;
+    height: 100%;
+    &__picture img {
+        width: 100%;
+    }
+    &_1, &_2 {
+        position: relative;
+    }
+    &__content {
+        padding: $paddingWide;
+        position: absolute;
+        top: 25%;
+        width: 100%;
+        max-width: 70vw;
+        color: $colorLightGrey;      
+    }
+    &__subtitle {
+        padding-bottom: 40px;
+    }
+    &__text {
+        max-width: 25vw;
+        font-size: 20px;
+        line-height: 30px;
+        padding-bottom: 40px;
+    }
+    &__shop__button {
+        @include buttonBrown;
+        width: 155px;
+        height: 55px;
+        border-radius: 30px;
+    }
+}

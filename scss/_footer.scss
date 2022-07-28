@@ -1,0 +1,86 @@
+.footer {
+    font-size: 0.9rem;
+    h3 {
+        @include poppinsMedium;
+        color: $colorDarkGrey;
+    }
+    &__info {
+        padding: $paddingWide;
+        background: $colorGreen;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__data, &__contacts, &__newsletter {
+        width: 30vw;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    &__data {
+        i {
+            color: $colorBrown;
+        }
+    }
+    &__contacts, &__newsletter {
+        display: flex;
+        flex-direction: column;
+        font-family: $fontLato;
+        line-height: 20px;
+        max-width: 350px;
+    }
+    &__contacts {
+        max-width: 260px;
+        i {
+            color: $colorBrown;
+            padding-right: 10px;
+        }
+        &__item {
+            line-height: 35px;
+            max-width: 230px;
+        }
+    }
+    &__newsletter {
+        color: $colorLightGrey;
+        &__form {
+            input {
+                border: none;
+                background: transparent;
+                border-bottom: $borderLight;
+                padding-bottom: 15px;
+                &:focus {
+                    outline: none;
+                    border: $borderLight;
+                    padding: 15px 10px;
+                    border-radius: 10px;
+                    transition: .5s all ease;
+                    background: $colorDarkGreen;
+                }
+            }
+        } 
+        button {
+            @include buttonBrownCircle;
+            @include buttonBrown;
+        }
+    }
+    &__rights {
+        background: $colorDarkGreen;
+        padding: $paddingWide;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: $fontLato;
+        font-size: 0.9rem;
+        color: $colorLightGrey; 
+        & a {
+            color: $colorLightGrey; 
+        }
+        & a:hover {
+            color: $colorDarkGrey;
+        }
+    }
+    &__copyright, &__payment__systems, &__privacy__policy {
+        margin: 20px 0;
+    }
+    &__payment__systems img {
+        padding: 0 5px;
+    }
+}
