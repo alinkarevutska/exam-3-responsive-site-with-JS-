@@ -317,6 +317,26 @@
         &__burger {
             width: 85px;
         }
+        &__basket__products {
+            width: 80vw;
+        }
+    }
+    .basket__product {
+        & h3 {
+            width: 30%;
+            margin-left: 5px;
+        }
+        &__title {
+            width: 75%;
+        }
+        &__remove {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+        }
+    }
+    .change__number input {
+        width: 15px;
     }
     .about__us {
         margin: 80px auto;

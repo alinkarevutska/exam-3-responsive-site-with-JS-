@@ -1744,6 +1744,24 @@ body {
   .header__burger {
     width: 85px;
   }
+  .header__basket__products {
+    width: 80vw;
+  }
+  .basket__product h3 {
+    width: 30%;
+    margin-left: 5px;
+  }
+  .basket__product__title {
+    width: 75%;
+  }
+  .basket__product__remove {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+  }
+  .change__number input {
+    width: 15px;
+  }
   .about__us {
     margin: 80px auto;
   }
