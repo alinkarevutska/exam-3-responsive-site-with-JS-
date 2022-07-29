@@ -31,14 +31,21 @@
             padding-bottom: 0;
         }
     }
-    .header__basket__products {
-        width: 75vw;
-        height: 70vh;
+    .header__basket {
+        &__products {
+            width: 75vw;
+            height: 70vh;
+        }
+        &__close {
+            top: 13%;
+            right: 12%;
+        }
+        &__sum {
+            width: 77vw;
+            left: 11%;
+        }
     }
-    .header__basket__close {
-        top: 13%;
-        right: 12%;
-    }
+
     .testimonials__slider__content {
         max-width: 450px;
     }
@@ -291,10 +298,20 @@
         }
     }
 }
+@media screen and (max-width: 400px) {
+    .header__basket__products {
+        padding: 20px;
+    }
+    .basket__product__title {
+        font-size: 0.95em;
+        width: 25%;
+    }
+}
 @media screen and (min-width: 321px) and (max-width: 450px) {
     .header__basket {
         width: 100px;
     }
+    
 }
 @media screen and (min-width: 320px) and (max-width: 576px) {
     .about__us, .testimonials, .why__us__benefits, .footer__info, .footer__rights {
@@ -322,9 +339,15 @@
         &__burger {
             width: 85px;
         }
-        &__basket__products {
+        }
+    .header__basket {
+        &__products {
             width: 90vw;
         }
+        &__sum {
+            width: 94vw;
+            left: 3%;
+        } 
     }
     .basket__product {
         & h3 {

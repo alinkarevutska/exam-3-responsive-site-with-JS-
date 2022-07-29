@@ -68,6 +68,26 @@
             position: relative;
             overflow: auto;
         }
+        &__sum {
+            position: fixed;
+            left: 18%;
+            bottom: 13%;
+            background: $colorBrown;
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            width: 62vw;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__confirm {
+            @include buttonBrown;
+            &:hover {
+                background: darken($colorDarkGreen, 30%);
+                color: white;
+            }
+            
+        }
     }
     &__link {
         padding: 5px;

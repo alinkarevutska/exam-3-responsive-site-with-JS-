@@ -5,7 +5,7 @@ const PRODUCTS = [
       "img": "april-showers",
       "name": "April Showers",
       "price": 10.00,
-      "quantity": 10
+      "quantityAvailable": 10
   },
   {
       "id": "02",
@@ -13,7 +13,7 @@ const PRODUCTS = [
       "img": "butter-cream",
       "name": "Butter Cream",
       "price": 23.00,
-      "quantity": 5
+      "quantityAvailable": 5
   },
   {
       "id": "03",
@@ -21,7 +21,7 @@ const PRODUCTS = [
       "img": "strawberries",
       "name": "Strawberry Dance",
       "price": 15.00,
-      "quantity": 12
+      "quantityAvailable": 12
   },
   {
       "id": "04",
@@ -29,7 +29,7 @@ const PRODUCTS = [
       "img": "fresh-roses",
       "name": "Fresh Roses",
       "price": 13.00,
-      "quantity": 7
+      "quantityAvailable": 7
   },
   {
       "id": "05",
@@ -37,7 +37,7 @@ const PRODUCTS = [
       "img": "lavander",
       "name": "Lavander cream",
       "price": 17.00,
-      "quantity": 11
+      "quantityAvailable": 11
   },
   {
       "id": "06",
@@ -45,7 +45,7 @@ const PRODUCTS = [
       "img": "chocolate",
       "name": "Chocolate cake",
       "price": 14.00,
-      "quantity": 25
+      "quantityAvailable": 25
   },
   {
       "id": "07",
@@ -53,7 +53,7 @@ const PRODUCTS = [
       "img": "salted-caramel",
       "name": "Salted Caramel",
       "price": 22.00,
-      "quantity": 23
+      "quantityAvailable": 23
   },
   {
       "id": "08",
@@ -61,7 +61,7 @@ const PRODUCTS = [
       "img": "april-showers",
       "name": "Raspberry Cream",
       "price": 12.00,
-      "quantity": 18
+      "quantityAvailable": 18
   },
   {
       "id": "09",
@@ -69,7 +69,7 @@ const PRODUCTS = [
       "img": "blueberry-scone",
       "name": "Blueberry Scone",
       "price": 11.00,
-      "quantity": 14
+      "quantityAvailable": 14
   }
 ];
 
@@ -151,37 +151,46 @@ const renderCategories = uniqueCategories => {
 
 renderCategories(getUniqueCategories());
 
+// --------- total sum count and render------------
+
+let totalSumAmount = 0;
+let totalSum = document.querySelector('#totalSum');
+
+const countTotalSum = (productPrice, productQuantity) => {
+  totalSumAmount += productPrice * productQuantity;
+  totalSum.innerHTML = `$${totalSumAmount.toFixed(2)}`
+}
+
 // --------- products in basket render------------
 
 const renderProductsInBasket = product => {
   let productInBasket = document.createElement('div');
   productInBasket.className = 'basket__product';
   productInBasket.dataset.id = product.id;
+  product.quantityChosen = 1;
   productInBasket.innerHTML = `
       <h3 class="basket__product__title">${product.name}</h3>
       <img class="basket__product__img" src="./img/products/${product.img}.png" alt="${product.img}">
       <span class="basket__product__price">$${product.price.toFixed(2)}</span>
+      <div class="change__number">
+      <input type="number" class="change__number__input" name="" value="${product.quantityChosen}" data-price="${product.price.toFixed(2)}" readonly>
+      </div>
   `;
 
   headerBasketProducts.append(productInBasket);
 
-  let changeProductQuantity = document.createElement('div');
-  changeProductQuantity.className = 'change__number'
-  changeProductQuantity.innerHTML = `
-    <input type="number" class="change__number__input" name="" value="1" readonly>
-  `;
-
-  productInBasket.append(changeProductQuantity);
-
-  const productQuantityInput = changeProductQuantity.querySelector('input[type="number"]');
+  const changeProductQuantity = productInBasket.querySelector('.change__number'),
+        productQuantity = changeProductQuantity.querySelector('input[type="number"]');
 
   let decrement = document.createElement('button');
   decrement.className = 'change__number decrease';
   decrement.dataset.id = product.id;
   decrement.innerHTML = `−`;
   decrement.addEventListener(`click`, ()=>{
-    if(Number(productQuantityInput.value) > 1) {
-      productQuantityInput.value--;
+    if(product.quantityChosen > 1) {
+      productQuantity.value--;
+      product.quantityChosen--;
+      countTotalSum(product.price, -1);
     } else {
       decrement.setAttribute('disabled', 'disabled')
     }
@@ -194,14 +203,16 @@ const renderProductsInBasket = product => {
   increment.innerHTML = `+`;
 
   increment.addEventListener(`click`, ()=>{
-        if(Number(productQuantityInput.value) < product.quantity) {
-          productQuantityInput.value++;
+        if(product.quantityChosen < product.quantityAvailable) {
+          productQuantity.value++;
+          product.quantityChosen++;
+          countTotalSum(product.price, 1);
         } else {
-          alert(`Oops! 😕 \n We don't have ${product.name} anymore!`);
+          alert(`Oops! 😕 \n We don't have '${product.name}' anymore!`);
           increment.setAttribute('disabled', 'disabled')
         }
   })
-
+  
   changeProductQuantity.append(increment);
 
   let removeFromBasketBtn = document.createElement('button');
@@ -214,16 +225,25 @@ const renderProductsInBasket = product => {
     localStorage.setItem(`products`, JSON.stringify(storageProducts));
     getProductQuantity();
     productInBasket.remove();
+    countTotalSum(product.price, -1);
   })
 
   productInBasket.append(removeFromBasketBtn);
-  
 }
 
-basketButton.addEventListener(`click`, () => headerBasketPopup.classList.add('open'));
-basketCloseButton.addEventListener(`click`, ()=> headerBasketPopup.classList.remove('open'));
+basketButton.addEventListener(`click`, () => {
+  headerBasketPopup.classList.add('open');
+  document.body.style.overflow = "hidden";
+});
+basketCloseButton.addEventListener(`click`, ()=> {
+  headerBasketPopup.classList.remove('open');
+  document.body.style.overflow = "auto";
+}
+);
 
 storageProducts.forEach(product => renderProductsInBasket(product));
+
+storageProducts.forEach(product => countTotalSum(product.price, productQuantity=1));
 
 // --------- products cards render------------
 
@@ -251,6 +271,7 @@ const renderProductCards = () => {
         getProductQuantity();
         localStorage.setItem(`products`, JSON.stringify(storageProducts))
         renderProductsInBasket(product);
+        countTotalSum(product.price, 1);
         console.log(`after adding products`, storageProducts);
       } else {
         alert(`Product '${product.name}' has already been added to your basket!`)
