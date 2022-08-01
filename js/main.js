@@ -167,13 +167,12 @@ const renderProductsInBasket = product => {
   let productInBasket = document.createElement('div');
   productInBasket.className = 'basket__product';
   productInBasket.dataset.id = product.id;
-  product.quantityChosen = 1;
   productInBasket.innerHTML = `
       <h3 class="basket__product__title">${product.name}</h3>
       <img class="basket__product__img" src="./img/products/${product.img}.png" alt="${product.img}">
       <span class="basket__product__price">$${product.price.toFixed(2)}</span>
       <div class="change__number">
-      <input type="number" class="change__number__input" name="" value="${product.quantityChosen}" data-price="${product.price.toFixed(2)}" readonly>
+      <input type="number" class="change__number__input" name="" value="${product.quantityChosen ? product.quantityChosen : product.quantityChosen = 1}" data-price="${product.price.toFixed(2)}" readonly>
       </div>
   `;
 
@@ -191,6 +190,12 @@ const renderProductsInBasket = product => {
       productQuantity.value--;
       product.quantityChosen--;
       countTotalSum(product.price, -1);
+
+      let indexOfProduct = storageProducts.findIndex(product => product.id === decrement.dataset.id);
+      storageProducts[indexOfProduct].quantityChosen = product.quantityChosen;
+      localStorage.setItem(`products`, JSON.stringify(storageProducts));
+      
+      console.log(`in decrement,`, storageProducts)
     } else {
       decrement.setAttribute('disabled', 'disabled')
     }
@@ -207,6 +212,10 @@ const renderProductsInBasket = product => {
           productQuantity.value++;
           product.quantityChosen++;
           countTotalSum(product.price, 1);
+
+          let indexOfProduct = storageProducts.findIndex(product => product.id === increment.dataset.id);
+          storageProducts[indexOfProduct].quantityChosen = product.quantityChosen;
+          localStorage.setItem(`products`, JSON.stringify(storageProducts));
         } else {
           alert(`Oops! 😕 \n We don't have '${product.name}' anymore!`);
           increment.setAttribute('disabled', 'disabled')
@@ -225,25 +234,73 @@ const renderProductsInBasket = product => {
     localStorage.setItem(`products`, JSON.stringify(storageProducts));
     getProductQuantity();
     productInBasket.remove();
-    countTotalSum(product.price, -1);
+    countTotalSum(product.price, -product.quantityChosen);
+    console.log(`in remove from basket,`, storageProducts);
   })
 
   productInBasket.append(removeFromBasketBtn);
 }
 
+// --------- open and close button ------------
+
 basketButton.addEventListener(`click`, () => {
   headerBasketPopup.classList.add('open');
+  headerBasketProducts.classList.contains('hidden') && headerBasketProducts.classList.remove('hidden');
   document.body.style.overflow = "hidden";
 });
+
 basketCloseButton.addEventListener(`click`, ()=> {
   headerBasketPopup.classList.remove('open');
   document.body.style.overflow = "auto";
-}
-);
+});
+
+// --------- confirm order button ------------
+
+const confirmOrderButton = document.querySelector('.header__basket__confirm'),
+      confirmedOrderPopup = document.querySelector('#headerBasketConfirmed');
+
+confirmOrderButton.addEventListener(`click`, () =>{
+  headerBasketProducts.classList.add('hidden');
+  confirmedOrderPopup.classList.add('open');
+});
+
+const date = new Date();
+let orderNumber = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}-${date.getHours()}${date.getMinutes()}`
+
+let productsList = storageProducts.map(product => {
+  return `${product.name}, quantity: ${product.quantityChosen}`
+}).join('</li><li>');
+
+confirmedOrderPopup.innerHTML = `
+  <h2>Thank you for your order!</h2>
+  <h3>Your order №${orderNumber}:</h3>
+  <ul>
+  <li>
+  ${productsList}
+  </li>
+  </ul>
+`;
+
+// --------- close confirm popup button ------------
+
+const closeConfirmBtn = document.createElement('button');
+closeConfirmBtn.className = 'header__basket__confirmed__close';
+closeConfirmBtn.id = 'headerBasketConfirmedClose';
+closeConfirmBtn.innerHTML = `Close`;
+
+closeConfirmBtn.addEventListener(`click`, () => {
+  confirmedOrderPopup.classList.remove('open');
+  headerBasketPopup.classList.remove('open');
+  document.body.style.overflow = "auto";
+});
+
+confirmedOrderPopup.append(closeConfirmBtn);
+
+// --------- render products and sum from storage ------------
 
 storageProducts.forEach(product => renderProductsInBasket(product));
 
-storageProducts.forEach(product => countTotalSum(product.price, productQuantity=1));
+storageProducts.forEach(product => countTotalSum(product.price, product.quantityChosen));
 
 // --------- products cards render------------
 
@@ -260,19 +317,18 @@ const renderProductCards = () => {
     let basketBtn = document.createElement('button');
     basketBtn.className = 'products__options';
     basketBtn.innerHTML = `<i class="fas fa-cart-plus"></i>`;
-    basketBtn.dataset.added = false;
     basketBtn.dataset.id = product.id;
 
     basketBtn.addEventListener(`click`, ()=> {
       let productAddedIndex = storageProducts.find(product => product.id === productCard.dataset.id);
          
       if(!productAddedIndex) {
+        console.log(product);
         storageProducts.push(product);
         getProductQuantity();
         localStorage.setItem(`products`, JSON.stringify(storageProducts))
         renderProductsInBasket(product);
         countTotalSum(product.price, 1);
-        console.log(`after adding products`, storageProducts);
       } else {
         alert(`Product '${product.name}' has already been added to your basket!`)
         return;
