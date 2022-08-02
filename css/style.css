@@ -867,6 +867,8 @@ body {
   border: none;
   cursor: pointer;
   font-size: 18px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .about__us__button__active {
@@ -1247,6 +1249,8 @@ body {
   font-size: 20px;
   line-height: 30px;
   margin: 0 20px 20px 0;
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
 }
 
 .why__us__accordeon__header.active::before {
@@ -1257,11 +1261,15 @@ body {
   transition: all 0.5s ease;
   background: #d0af8a;
   color: white;
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
 }
 
 .why__us__accordeon__body {
   font-family: "Lato", sans-serif;
   color: #777777;
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
 }
 
 .why__us__benefits {
@@ -1868,6 +1876,9 @@ body {
   .header__basket__sum {
     width: 94vw;
     left: 3%;
+  }
+  .header__basket__confirmed.open {
+    width: 65vw;
   }
   .basket__product h3 {
     width: 30%;

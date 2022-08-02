@@ -30,16 +30,19 @@
                 font-size: 20px;
                 line-height: 30px;
                 margin: 0 20px 20px 0;
+                transition: .5s ease all;
             }
             &.active::before {
                 @include moreButtonsActive;
                 background: #d0af8a;
                 color: white;
+                transition: .5s ease all;
             }
         }
         &__body {
             font-family: $fontLato;
             color: $colorLightGrey;
+            transition: .5s ease all;
         } 
     }
     &__benefits {

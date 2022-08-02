@@ -27,6 +27,7 @@
     &__button {
     @include aboutUsButton; 
       font-size: 18px;
+      transition: all 0.5s ease;
       &__active {
           background: white;
           color: #d0af8a;
