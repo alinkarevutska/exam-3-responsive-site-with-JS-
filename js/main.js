@@ -86,7 +86,7 @@ const getStorageProducts = () => {
   const storageProducts = localStorage.getItem(`products`) ? JSON.parse(localStorage.getItem(`products`)) : [];
   return storageProducts;
 }
-const storageProducts = getStorageProducts();
+let storageProducts = getStorageProducts();
 
 const getProductQuantity = () => {
   let productQuantity = document.querySelector('.header__basket__count');
@@ -235,7 +235,6 @@ const renderProductsInBasket = product => {
     getProductQuantity();
     productInBasket.remove();
     countTotalSum(product.price, -product.quantityChosen);
-    console.log(`in remove from basket,`, storageProducts);
   })
 
   productInBasket.append(removeFromBasketBtn);
@@ -254,7 +253,7 @@ basketCloseButton.addEventListener(`click`, ()=> {
   document.body.style.overflow = "auto";
 });
 
-// --------- confirm order button ------------
+// --------- confirm order popup ------------
 
 const confirmOrderButton = document.querySelector('.header__basket__confirm'),
       confirmedOrderPopup = document.querySelector('#headerBasketConfirmed');
@@ -262,39 +261,40 @@ const confirmOrderButton = document.querySelector('.header__basket__confirm'),
 confirmOrderButton.addEventListener(`click`, () =>{
   headerBasketProducts.classList.add('hidden');
   confirmedOrderPopup.classList.add('open');
+  console.log(storageProducts);
+
+  const date = new Date();
+  let orderNumber = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}-${date.getHours()}${date.getMinutes()}`
+
+  let productsList = storageProducts.map(product => {
+    return `${product.name}, quantity: ${product.quantityChosen ? product.quantityChosen : 1}`
+  }).join('</li><li>');
+
+  confirmedOrderPopup.innerHTML = `
+    <h2>Thank you for your order!</h2>
+    <h3>Your order №${orderNumber}:</h3>
+    <ul>
+    <li>
+    ${productsList}
+    </li>
+    </ul>
+    <button class="header__basket__confirmed__close" id="headerBasketConfirmedClose">Close</button>
+  `;
+
+  const closeConfirmBtn = document.querySelector('#headerBasketConfirmedClose');
+
+  closeConfirmBtn.addEventListener(`click`, () => {
+    confirmedOrderPopup.classList.remove('open');
+    headerBasketPopup.classList.remove('open');
+    document.body.style.overflow = "auto";
+
+    storageProducts = [];
+    window.localStorage.clear();
+    getProductQuantity();
+
+    console.log(storageProducts);
+  });
 });
-
-const date = new Date();
-let orderNumber = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}-${date.getHours()}${date.getMinutes()}`
-
-let productsList = storageProducts.map(product => {
-  return `${product.name}, quantity: ${product.quantityChosen}`
-}).join('</li><li>');
-
-confirmedOrderPopup.innerHTML = `
-  <h2>Thank you for your order!</h2>
-  <h3>Your order №${orderNumber}:</h3>
-  <ul>
-  <li>
-  ${productsList}
-  </li>
-  </ul>
-`;
-
-// --------- close confirm popup button ------------
-
-const closeConfirmBtn = document.createElement('button');
-closeConfirmBtn.className = 'header__basket__confirmed__close';
-closeConfirmBtn.id = 'headerBasketConfirmedClose';
-closeConfirmBtn.innerHTML = `Close`;
-
-closeConfirmBtn.addEventListener(`click`, () => {
-  confirmedOrderPopup.classList.remove('open');
-  headerBasketPopup.classList.remove('open');
-  document.body.style.overflow = "auto";
-});
-
-confirmedOrderPopup.append(closeConfirmBtn);
 
 // --------- render products and sum from storage ------------
 
@@ -306,6 +306,7 @@ storageProducts.forEach(product => countTotalSum(product.price, product.quantity
 
 const renderProductCards = () => {
   PRODUCTS.forEach(product => {
+    // debugger;
     let productCard = document.createElement('li');
     productCard.className = 'products__list__item';
     productCard.dataset.id = product.id;
