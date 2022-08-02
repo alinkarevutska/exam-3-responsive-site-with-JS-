@@ -194,8 +194,6 @@ const renderProductsInBasket = product => {
       let indexOfProduct = storageProducts.findIndex(product => product.id === decrement.dataset.id);
       storageProducts[indexOfProduct].quantityChosen = product.quantityChosen;
       localStorage.setItem(`products`, JSON.stringify(storageProducts));
-      
-      console.log(`in decrement,`, storageProducts)
     } else {
       decrement.setAttribute('disabled', 'disabled')
     }
@@ -243,10 +241,19 @@ const renderProductsInBasket = product => {
 // --------- open and close button ------------
 
 basketButton.addEventListener(`click`, () => {
-  headerBasketPopup.classList.add('open');
-  headerBasketProducts.classList.contains('hidden') && headerBasketProducts.classList.remove('hidden');
-  document.body.style.overflow = "hidden";
-});
+  if (storageProducts.length > 0){
+    headerBasketPopup.classList.add('open');
+    headerBasketProducts.classList.contains('hidden') && headerBasketProducts.classList.remove('hidden');
+    document.body.style.overflow = "hidden";
+  } else {
+    if (confirm(`Your basket is empty! \n Let's fill it? 💛`)) {
+      const shop__section = document.querySelector('#products');
+      shop__section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+      });
+      }
+}});
 
 basketCloseButton.addEventListener(`click`, ()=> {
   headerBasketPopup.classList.remove('open');
@@ -261,7 +268,6 @@ const confirmOrderButton = document.querySelector('.header__basket__confirm'),
 confirmOrderButton.addEventListener(`click`, () =>{
   headerBasketProducts.classList.add('hidden');
   confirmedOrderPopup.classList.add('open');
-  console.log(storageProducts);
 
   const date = new Date();
   let orderNumber = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}-${date.getHours()}${date.getMinutes()}`
@@ -291,8 +297,6 @@ confirmOrderButton.addEventListener(`click`, () =>{
     storageProducts = [];
     window.localStorage.clear();
     getProductQuantity();
-
-    console.log(storageProducts);
   });
 });
 
@@ -324,7 +328,6 @@ const renderProductCards = () => {
       let productAddedIndex = storageProducts.find(product => product.id === productCard.dataset.id);
          
       if(!productAddedIndex) {
-        console.log(product);
         storageProducts.push(product);
         getProductQuantity();
         localStorage.setItem(`products`, JSON.stringify(storageProducts))
