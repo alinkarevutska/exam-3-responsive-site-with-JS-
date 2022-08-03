@@ -86,7 +86,7 @@ const getStorageProducts = () => {
   const storageProducts = localStorage.getItem(`products`) ? JSON.parse(localStorage.getItem(`products`)) : [];
   return storageProducts;
 }
-let storageProducts = getStorageProducts();
+const storageProducts = getStorageProducts();
 
 const getProductQuantity = () => {
   let productQuantity = document.querySelector('.header__basket__count');
@@ -164,6 +164,7 @@ const countTotalSum = (productPrice, productQuantity) => {
 // --------- products in basket render------------
 
 const renderProductsInBasket = product => {
+  console.log(`in render basket`, storageProducts);
   let productInBasket = document.createElement('div');
   productInBasket.className = 'basket__product';
   productInBasket.dataset.id = product.id;
@@ -265,44 +266,43 @@ basketCloseButton.addEventListener(`click`, ()=> {
 const confirmOrderButton = document.querySelector('.header__basket__confirm'),
       confirmedOrderPopup = document.querySelector('#headerBasketConfirmed');
 
-confirmOrderButton.addEventListener(`click`, () =>{
-  headerBasketProducts.classList.add('hidden');
-  confirmedOrderPopup.classList.add('open');
-
+const renderOrderNumber = () => {
   const date = new Date();
   let orderNumber = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}-${date.getHours()}${date.getMinutes()}`
+  return orderNumber;
+}
 
+const renderConfirmedOrder = (storageProducts) => {
   let productsList = storageProducts.map(product => {
     return `${product.name}, quantity: ${product.quantityChosen ? product.quantityChosen : 1}`
   }).join('</li><li>');
+  console.log(`in render confirmed order`, productsList);
+  return productsList;
+}
 
+const fullConfirmedOrderPopup = () => {
   confirmedOrderPopup.innerHTML = `
-    <h2>Thank you for your order!</h2>
-    <h3>Your order №${orderNumber}:</h3>
-    <ul>
-    <li>
-    ${productsList}
-    </li>
-    </ul>
-    <button class="header__basket__confirmed__close" id="headerBasketConfirmedClose">Close</button>
-  `;
+  <h2>Thank you for your order!</h2>
+  <h3>Your order №${renderOrderNumber()}:</h3>
+  <ul>
+  <li>
+  ${renderConfirmedOrder(storageProducts)}
+  </li>
+  </ul>
+  <button class="header__basket__confirmed__close" id="headerBasketConfirmedClose">Close</button>
+  `; 
+}
 
-  const closeConfirmBtn = document.querySelector('#headerBasketConfirmedClose');
-
-  closeConfirmBtn.addEventListener(`click`, () => {
-    confirmedOrderPopup.classList.remove('open');
-    headerBasketPopup.classList.remove('open');
-    document.body.style.overflow = "auto";
-
-    storageProducts = [];
-    window.localStorage.clear();
-    getProductQuantity();
-  });
+confirmOrderButton.addEventListener(`click`, () =>{
+  headerBasketProducts.classList.add('hidden');
+  confirmedOrderPopup.classList.add('open');
+  fullConfirmedOrderPopup();
 });
 
 // --------- render products and sum from storage ------------
 
 storageProducts.forEach(product => renderProductsInBasket(product));
+
 
 storageProducts.forEach(product => countTotalSum(product.price, product.quantityChosen));
 
